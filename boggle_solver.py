@@ -74,7 +74,7 @@ def enter_board():
     return rolls
 
 
-def fill_out_board(board, game_mode):
+def fill_out_board(game_mode):
     
     if game_mode == "n":
         rolls = roll_the_dice()
@@ -181,6 +181,8 @@ def fill_out_board(board, game_mode):
     for elem in neighbours:
         sixteen.set_neighbour(elem)
 
+    return board
+
 def word_search(node, curr, ok_words, visited):
     new_visited = visited + [node, ]
     
@@ -276,16 +278,15 @@ def welcome():
         game_mode = input("Incorrect input. Would you like to enter your own board? (y/n) ")
 
     if game_mode == "n":
-        print("Auto-generating a board for you...")
+        print("Auto-generating a board for you...\n")
 
     return game_mode
 
 def main():
-    board = []
 
     game_mode = welcome()
 
-    fill_out_board(board, game_mode)
+    board = fill_out_board(game_mode)
 
     global words_found
     words_found = []
