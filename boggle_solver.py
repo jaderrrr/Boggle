@@ -188,6 +188,7 @@ def word_search(node, curr, ok_words, visited):
     
     curr += node.value # this is the current string we are looking for e.g. "a" or "abcd"
 
+    #if curr is a valid word, append it to the words_found list
     for word in ok_words:
         if curr == word:
             if word not in words_found:
@@ -199,6 +200,11 @@ def word_search(node, curr, ok_words, visited):
     
     for word in ok_words:
         if len(word) > i:
+            #'qu' case
+            if len(node.value) == 2:
+                if word[i-1] == node.value[0] and word[i] == node.value[1]:
+                    new_words.append(word)
+            #all other letters
             if word[i] == node.value:
                 new_words.append(word)
 
