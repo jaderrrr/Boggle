@@ -1,0 +1,316 @@
+<!doctype HTML>
+
+<html>
+
+	<head>
+		<title>Automatic Game</title>
+		<link href="styles/main.css" rel="stylesheet" type="text/css"/>
+
+	</head>
+
+	<body>
+
+
+		<script src="validwordlist.js"> //load the word list </script>
+
+		<h1>Boggle</h1>
+		<h4>Refresh for a new board</h4>
+
+		<script>
+
+			var wordsFound = new Array();
+
+			class letter {
+				constructor(value) {
+					this.value = value;
+					this.neighbours = [];
+				}
+			}
+			
+			function rollTheDice() {
+
+				//dice configuration from english boggle
+    			var die_1 = ["r", "i", "f", "o", "b", "x"];
+    			var die_2 = ["i", "f", "e", "h", "e", "y"];
+    			var die_3 = ["d", "e", "n", "o", "w", "s"];
+    			var die_4 = ["u", "t", "o", "k", "n", "d"];
+    			var die_5 = ["h", "m", "s", "r", "a", "o"];
+    			var	die_6 = ["l", "u", "p", "e", "t", "s"];
+    			var die_7 = ["a", "c", "i", "t", "o", "a"];
+    			var	die_8 = ["y", "l", "g", "k", "u", "e"];
+    			var die_9 = ["qu", "b", "m", "j", "o", "a"];
+    			var	die_10 = ["e", "h", "i", "s", "p", "n"];
+    			var die_11 = ["v", "e", "t", "i", "g", "n"];
+    			var die_12 = ["b", "a", "l", "i", "y", "t"];
+    			var die_13 = ["e", "z", "a", "v", "n", "d"];
+    			var die_14 = ["r", "a", "l", "e", "s", "c"];
+    			var die_15 = ["u", "w", "i", "l", "r", "g"];
+    			var die_16 = ["p", "a", "c", "e", "m", "d"];
+
+    			var dice = [die_1, die_2, die_3, die_4, die_5, die_6, die_7, die_8, die_9, die_10, die_11, die_12, die_13, die_14, die_15, die_16];
+
+    			var rolls = new Array();
+    			
+    			var i = 0;
+    			while (i < 16) {
+    				var result = dice[i][Math.floor(Math.random() * 5)];
+        			rolls.push(result);
+        			i++;
+    			}
+
+        		
+        		//want to be able to shuffle this like in python.
+        		//have to make my own shuffle function
+
+    			return rolls
+			}
+
+			rolls = rollTheDice();
+
+
+			function fill_out_board(rolls) {
+
+				var one = new letter(rolls[0]);
+			    var two = new letter(rolls[1]);
+			    var three = new letter(rolls[2]);
+			    var four = new letter(rolls[3]);
+			    var five = new letter(rolls[4]);
+			    var six = new letter(rolls[5]);
+			    var seven = new letter(rolls[6]);
+			    var eight = new letter(rolls[7]);
+			    var nine = new letter(rolls[8]);
+			    var ten = new letter(rolls[9]);
+			    var eleven = new letter(rolls[10]);
+			    var twelve = new letter(rolls[11]);
+			    var thirteen = new letter(rolls[12]);
+			    var fourteen = new letter(rolls[13]);
+			    var fifteen = new letter(rolls[14]);
+			    var sixteen = new letter(rolls[15]);
+
+			    var board = [one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen];
+
+			    //one neighbours
+			    var adjacent = [two, five, six];
+			    for (let i = 0; i < adjacent.length; i++) {
+			        one.neighbours.push(adjacent[i]);
+			    }
+
+			    //two neighbours
+			    adjacent = [one, three, five, six, seven];
+			    for (let i = 0; i < adjacent.length; i++) {
+			        two.neighbours.push(adjacent[i]);
+			    }
+
+			    //three neighbours
+			    adjacent = [two, four, six, seven, eight];
+			    for (let i = 0; i < adjacent.length; i++) {
+			        three.neighbours.push(adjacent[i]);
+			    }
+
+			    //four neighbours
+			    adjacent = [three, seven, eight];
+			    for (let i = 0; i < adjacent.length; i++) {
+			        four.neighbours.push(adjacent[i]);	
+			    }
+
+			    //five neighbours
+			    adjacent = [one, two, six, nine, ten];
+			    for (let i = 0; i < adjacent.length; i++) {
+			        five.neighbours.push(adjacent[i]);			   
+			    }
+
+			    //six neighbours
+			    adjacent = [one, two, three, five, seven, nine, ten, eleven];
+			    for (let i = 0; i < adjacent.length; i++) {
+			        six.neighbours.push(adjacent[i]);
+			    }
+
+			    //seven neighbours
+			    adjacent = [two, three, four, six, eight, ten, eleven, twelve];
+			    for (let i = 0; i < adjacent.length; i++) {
+			        seven.neighbours.push(adjacent[i]);
+			    }
+
+			    //eight neighbours
+			    adjacent = [three, four, seven, eleven, twelve];
+			    for (let i = 0; i < adjacent.length; i++) {
+			        eight.neighbours.push(adjacent[i]);
+			    }
+
+			    //nine neighbours
+			    adjacent = [five, six, ten, thirteen, fourteen];
+			    for (let i = 0; i < adjacent.length; i++) {
+			        nine.neighbours.push(adjacent[i]);
+			    }
+
+			    //ten neighbours
+			    adjacent = [five, six, seven, nine, eleven, thirteen, fourteen, fifteen];
+			    for (let i = 0; i < adjacent.length; i++) {
+			        ten.neighbours.push(adjacent[i]);
+			    }
+
+			    //eleven neighbours
+			    adjacent = [six, seven, eight, ten, twelve, fourteen, fifteen, sixteen];
+			    for (let i = 0; i < adjacent.length; i++) {
+			        eleven.neighbours.push(adjacent[i]);
+			    }
+
+			    //twelve neighbours
+			    adjacent = [seven, eight, eleven, fifteen, sixteen];
+			    for (let i = 0; i < adjacent.length; i++) {
+			        twelve.neighbours.push(adjacent[i]);
+			    }
+
+			    //thirteen neighbours
+			    adjacent = [nine, ten, fourteen];
+			    for (let i = 0; i < adjacent.length; i++) {
+			        thirteen.neighbours.push(adjacent[i]);
+			    }
+
+			    //fourteen neighbours
+			    adjacent = [nine, ten, eleven, thirteen, fifteen];
+			    for (let i = 0; i < adjacent.length; i++) {
+			        fourteen.neighbours.push(adjacent[i]);
+			    }
+
+			    //fifteen neighbours
+			    adjacent = [ten, eleven, twelve, fourteen, sixteen];
+			    for (let i = 0; i < adjacent.length; i++) {
+			        fifteen.neighbours.push(adjacent[i]);
+			    }
+
+			    //sixteen neighbours
+			    adjacent = [eleven, twelve, fifteen];
+			    for (let i = 0; i < adjacent.length; i++) {
+			        sixteen.neighbours.push(adjacent[i]);
+			    }
+
+			    return board;
+			}
+
+			board = fill_out_board(rolls);
+
+			console.log(board);
+
+			function wordSearch(node, curr, ok_words, visited) {
+
+				//console.log(ok_words.slice(0,10));
+				new_visited = visited;
+				visited.push(node);
+
+				//the current string we are looking for
+				curr += node.value;
+
+				//if curr is a valid word, append it to the words found list
+				for (let i = 0; i < ok_words.length; i++) {
+					if (curr == ok_words[i]) {
+						if (!(curr in wordsFound)) {
+							wordsFound.push(curr);
+						}
+					}
+				}
+
+				let searchLength = curr.length - 1;
+				let new_words = new Array();
+
+				for(let i = 0; i < ok_words.length; i++) {
+					if (ok_words[i].length > searchLength) {
+						//'qu' case
+						if (node.value.length == 2) {
+							if (ok_words[i][searchLength - 1] == node.value[0] && ok_words[i][searchLength] == node.value[1]) {
+								new_words.push(ok_words[i]);
+							}
+						}
+						//all other letters
+						else if (ok_words[i][searchLength] == node.value) {
+							new_words.push(ok_words[i]);
+						}
+					}
+				}
+
+				if (new_words.length != 0) {
+					for (let k = 0; k < node.neighbours.length; k++) {
+						if (!(node.neighbours[k] in new_visited)) {
+							wordSearch(node.neighbours[k], curr, new_words, new_visited);
+						}
+					}
+				}
+			}
+
+			function searchBoard(board) {
+
+				var visited = [];
+
+				var i = 0;
+				while (i < board.length) {
+					wordSearch(board[i], "", words, visited);
+					i++;
+				}
+			}
+
+			searchBoard(board);
+
+			console.log(wordsFound);
+
+			//http://projects.exeter.ac.uk/brad/boggle/braggle.htm big credit, knew nothing about js so this helped a LOT
+			function print_board(rolls) {
+
+				document.write('<center> <table border = "1" cellpadding = "15" cellspacing = "0">')
+	
+				var row = 0;
+				while (row < 4) {
+					var i = 0;
+
+					document.write('<tr align = "center">');
+
+				
+					while (i < 4) {
+						document.write('<td width=100 height=100><fontsize="100">' + rolls[row*4 + i] + '</font></td>');
+						i++;
+					}
+
+					document.write('</tr>')
+					row++;
+				}
+				
+
+				document.write("</table></center>")
+			}
+
+			
+			print_board(rolls);
+
+		</script>
+
+		<center>
+
+			<br>
+			<br>
+
+			<form id="word">
+				Enter word: <input type="text" name="word"> <br>
+			</form>
+
+			<button onclick="receiveWord()">Submit</button>
+
+			<p id="test"> </p>
+
+		</center>
+
+		<script>
+
+			function receiveWord() {
+				var x = document.getElementById("word");
+				var word = x.elements[0].value;
+
+				document.getElementById("test").innerHTML = word;
+			}
+
+
+		</script>
+
+
+
+	</body>
+
+</html>

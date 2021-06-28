@@ -1,0 +1,25 @@
+body {
+	background: #FFD9DA; 
+	font-family: Helvetica;
+}
+
+h1 {
+	background: #89023E;
+	color: white;
+	padding: 10px 10px;
+}
+
+h4 {
+	background: #EA638C;
+	padding: 10px 10px;
+	font-style: italic;
+}
+a {
+	color: #30343F;
+}
+
+td {
+	font-size: 36pt;
+	font-style: bold;
+	color: #89023E;
+}
