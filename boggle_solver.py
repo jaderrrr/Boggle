@@ -199,14 +199,6 @@ def word_search(node, curr, ok_words, visited):
                 word_search(neighbour, curr, new_words, new_visited)
 
 
-def DFS(node):
-    print(node.value)
-    visited.append(node)
-
-    for neighbour in node.neighbours:
-        if neighbour not in visited:
-            DFS(neighbour)
-
 def print_board(board):
     to_print = ""
     
