@@ -95,45 +95,34 @@ def fill_out_board(board):
     board.append(sixteen)
 
     #one neighbours
-    one.set_neighbour(two)
-    one.set_neighbour(five)
-    one.set_neighbour(six)
+    neighbours = [two, five, six]
+    for elem in neighbours:
+        one.set_neighbour(elem)
 
     #two neighbours
-    two.set_neighbour(one)
-    two.set_neighbour(three)
-    two.set_neighbour(five)
-    two.set_neighbour(six)
-    two.set_neighbour(seven)
+    neighbours = [one, three, five, six, seven]
+    for elem in neighbours:
+        two.set_neighbour(elem)
 
     #three neighbours
-    three.set_neighbour(two)
-    three.set_neighbour(four)
-    three.set_neighbour(six)
-    three.set_neighbour(seven)
-    three.set_neighbour(eight)
+    neighbours = [two, four, six, seven, eight]
+    for elem in neighbours:
+        three.set_neighbour(elem)
 
     #four neighbours
-    four.set_neighbour(three)
-    four.set_neighbour(seven)
-    four.set_neighbour(eight)
+    neighbours = [three, seven, eight]
+    for elem in neighbours:
+        four.set_neighbour(elem)
 
     #five neighbours
-    five.set_neighbour(one)
-    five.set_neighbour(two)
-    five.set_neighbour(six)
-    five.set_neighbour(nine)
-    five.set_neighbour(ten)
+    neighbours = [one, two, six, nine, ten]
+    for elem in neighbours:
+        five.set_neighbour(elem)
 
     #six neighbours
-    six.set_neighbour(one)
-    six.set_neighbour(two)
-    six.set_neighbour(three)
-    six.set_neighbour(five)
-    six.set_neighbour(seven)
-    six.set_neighbour(nine)
-    six.set_neighbour(ten)
-    six.set_neighbour(eleven)
+    neighbours = [one, two, three, five, seven, nine, ten, eleven]
+    for elem in neighbours:
+        six.set_neighbour(elem)
 
     #seven neighbours
     neighbours = [two, three, four, six, eight, ten, eleven, twelve]
