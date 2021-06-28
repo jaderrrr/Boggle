@@ -15,9 +15,7 @@ class letter:
     def set_neighbour(self, letter):
         self.neighbours.append(letter)
 
-def fill_out_board(board):
-    letters = "abcdefghijklmnopqrstuvwxyz"
-    
+def roll_the_dice():
     #dice configuration from english boggle
     die_1 = ["r", "i", "f", "o", "b", "x"]
     die_2 = ["i", "f", "e", "h", "e", "y"]
@@ -45,6 +43,43 @@ def fill_out_board(board):
         rolls.append(result)
     
     random.shuffle(rolls)
+
+    return rolls
+
+def enter_board():
+    
+    current_four = input("Please enter the first row, each letter separated by a space: ")
+    current_letters = current_four.split()
+
+    rolls = []
+
+    rolls.append(current_letters[0].lower())
+    rolls.append(current_letters[1].lower())
+    rolls.append(current_letters[2].lower())
+    rolls.append(current_letters[3].lower())
+    
+    i = 0
+
+    while i < 3:
+        current_four = input("Please enter the next row, each letter separated by a space: ")
+        current_letters = current_four.split()
+
+        rolls.append(current_letters[0].lower())
+        rolls.append(current_letters[1].lower())
+        rolls.append(current_letters[2].lower())
+        rolls.append(current_letters[3].lower())
+    
+        i += 1
+
+    return rolls
+
+
+def fill_out_board(board, game_mode):
+    
+    if game_mode == "n":
+        rolls = roll_the_dice()
+    else:
+        rolls = enter_board()
 
     one = letter(rolls[0])
     board.append(one)
@@ -219,8 +254,6 @@ def play_game(board):
 
     player_words = []
     
-    print(words_found)
-
     print_board(board)
     word = input("Enter word: ")
     
@@ -260,9 +293,27 @@ def play_game(board):
 
     print()
 
+def welcome():
+    print("---------------------")
+    print("-~- Boggle Player -~-")
+    print("---------------------")
+
+    game_mode = input("Would you like to enter your own board? (y/n) ")
+
+    while game_mode != "y" and game_mode != "n":
+        game_mode = input("Incorrect input. Would you like to enter your own board? (y/n) ")
+
+    if game_mode == "n":
+        print("Auto-generating a board for you...")
+
+    return game_mode
+
 def main():
     board = []
-    fill_out_board(board)
+
+    game_mode = welcome()
+
+    fill_out_board(board, game_mode)
 
     global words_found
     words_found = []
