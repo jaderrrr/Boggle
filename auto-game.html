@@ -18,6 +18,19 @@
 
 		<script>
 
+			function isInArray(object, arr) { 
+
+				let i = 0;
+				while (i < arr.length) {
+					if (arr[i] == object) {
+						return true;
+					}
+					i++;
+				}
+
+				return false;
+			}
+
 			var wordsFound = new Array();
 
 			class letter {
@@ -192,19 +205,22 @@
 
 			console.log(board);
 
-			function wordSearch(node, curr, ok_words, visited) {
+			function wordSearch(node, curr, ok_words, in_visited) {
 
 				//console.log(ok_words.slice(0,10));
-				new_visited = visited;
-				visited.push(node);
+				var new_visited = [...in_visited];
+				new_visited.push(node);
+
 
 				//the current string we are looking for
 				curr += node.value;
 
+				console.log("The current search term: " + curr);
+
 				//if curr is a valid word, append it to the words found list
 				for (let i = 0; i < ok_words.length; i++) {
 					if (curr == ok_words[i]) {
-						if (!(curr in wordsFound)) {
+						if (!(isInArray(curr,wordsFound))) {
 							wordsFound.push(curr);
 						}
 					}
@@ -228,9 +244,11 @@
 					}
 				}
 
+				console.log(new_words.length + " words starting with this combination.");
+
 				if (new_words.length != 0) {
 					for (let k = 0; k < node.neighbours.length; k++) {
-						if (!(node.neighbours[k] in new_visited)) {
+						if (!(isInArray(node.neighbours[k], new_visited))) {
 							wordSearch(node.neighbours[k], curr, new_words, new_visited);
 						}
 					}
@@ -253,7 +271,7 @@
 			wordsFound = wordsFound.filter(function(item, pos) {
 				return wordsFound.indexOf(item) == pos;
 			})
-			
+
 			console.log(wordsFound);
 
 			//http://projects.exeter.ac.uk/brad/boggle/braggle.htm big credit, knew nothing about js so this helped a LOT
@@ -295,39 +313,64 @@
 				Enter word: <input type="text" name="word"> <br>
 			</form>
 
+			<br>
+
 			<button onclick="receiveWord()">Submit</button>
 
-			<p id="test"> </p>
+			<p id="receiving_word"> </p>
 
 			<br>
 			<br>
 
 			<button onclick="showAnswers()">End the Round</button>
 
+			<p id = "wordsFound"> </p>
+
 		</center>
 
 		<script>
+
+			let player_words = new Array();
 
 			function receiveWord() {
 				var x = document.getElementById("word");
 				var word = x.elements[0].value;
 
-				document.getElementById("test").innerHTML = word;
+				let text = "";
+
+				if (word.length < 3) {
+					text = "A valid boggle word must be 3 or more letters long.";
+				}
+
+				else if (!(isInArray(word, wordsFound))) {
+					text = "Word cannot be made on this board or is not found in dictionary.";
+				}
+
+				else if (word in player_words) {
+					text = "You have already found this word!"
+				}
+
+				else {
+					player_words.push(word);
+
+					text = "Well done! You have now found " + player_words.length + "/" + wordsFound.length + " words total.";
+				}
+
+				document.getElementById("receiving_word").innerHTML = text;
 			}
 
 			function showAnswers() {
 
-				document.write("<p>");
-
-				var text = "";
+				var text = "You missed: ";
 
 				for (let i = 0; i < wordsFound.length; i++) {
-					text += wordsFound[i] + ", ";
+
+					if (!(isInArray(wordsFound[i], player_words))) {
+						text += wordsFound[i] + ", ";
+					}
 				}
 
-				document.write(text);
-
-				document.write("</p>");
+				document.getElementById("wordsFound").innerHTML = text;
 			}
 
 
