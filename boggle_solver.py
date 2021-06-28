@@ -47,52 +47,24 @@ def fill_out_board(board):
     random.shuffle(rolls)
 
     one = letter(rolls[0])
-    board.append(one)
-
     two = letter(rolls[1])
-    board.append(two)
-
     three = letter(rolls[2])
-    board.append(three)
-
     four = letter(rolls[3])
-    board.append(four)
-
     five = letter(rolls[4])
-    board.append(five)
-
     six = letter(rolls[5])
-    board.append(six)
-
     seven = letter(rolls[6])
-    board.append(seven)
-
     eight = letter(rolls[7])
-    board.append(eight)
-
     nine = letter(rolls[8])
-    board.append(nine)
-
     ten = letter(rolls[9])
-    board.append(ten)
-
     eleven = letter(rolls[10])
-    board.append(eleven)
-
     twelve = letter(rolls[11])
-    board.append(twelve)
-
     thirteen = letter(rolls[12])
-    board.append(thirteen)
-
     fourteen = letter(rolls[13])
-    board.append(fourteen)
-
     fifteen = letter(rolls[14])
-    board.append(fifteen)
-
     sixteen = letter(rolls[15])
-    board.append(sixteen)
+
+    board = [one, two, three, four, five, six, seven, eight, nine, ten, eleven,
+            twelve, thirteen, fourteen, fifteen, sixteen]
 
     #one neighbours
     neighbours = [two, five, six]
