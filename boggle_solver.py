@@ -46,68 +46,52 @@ def fill_out_board(board):
     
     random.shuffle(rolls)
 
-    #one = letter(rolls[0])
-    one = letter("o")
+    one = letter(rolls[0])
     board.append(one)
 
-    #two = letter(rolls[1])
-    two = letter("e")
+    two = letter(rolls[1])
     board.append(two)
 
-    #three = letter(rolls[2])
-    three = letter("g")
+    three = letter(rolls[2])
     board.append(three)
 
-    #four = letter(rolls[3])
-    four = letter("y")
+    four = letter(rolls[3])
     board.append(four)
 
-    #five = letter(rolls[4])
-    five = letter("n")
+    five = letter(rolls[4])
     board.append(five)
 
-    #six = letter(rolls[5])
-    six = letter("g")
+    six = letter(rolls[5])
     board.append(six)
 
-    #seven = letter(rolls[6])
-    seven = letter("t")
+    seven = letter(rolls[6])
     board.append(seven)
 
-    #eight = letter(rolls[7])
-    eight = letter("l")
+    eight = letter(rolls[7])
     board.append(eight)
 
-    #nine = letter(rolls[8])
-    nine = letter("b")
+    nine = letter(rolls[8])
     board.append(nine)
 
-    #ten = letter(rolls[9])
-    ten = letter("y")
+    ten = letter(rolls[9])
     board.append(ten)
 
-    #eleven = letter(rolls[10])
-    eleven = letter("s")
+    eleven = letter(rolls[10])
     board.append(eleven)
 
-    #twelve = letter(rolls[11])
-    twelve = letter("i")
+    twelve = letter(rolls[11])
     board.append(twelve)
 
-    #thirteen = letter(rolls[12])
-    thirteen = letter("d")
+    thirteen = letter(rolls[12])
     board.append(thirteen)
 
-    #fourteen = letter(rolls[13])
-    fourteen = letter("e")
+    fourteen = letter(rolls[13])
     board.append(fourteen)
 
-    #fifteen = letter(rolls[14])
-    fifteen = letter("u")
+    fifteen = letter(rolls[14])
     board.append(fifteen)
 
-    #sixteen = letter(rolls[15])
-    sixteen = letter("p")
+    sixteen = letter(rolls[15])
     board.append(sixteen)
 
     #one neighbours
