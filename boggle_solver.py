@@ -15,9 +15,7 @@ class letter:
     def set_neighbour(self, letter):
         self.neighbours.append(letter)
 
-def fill_out_board(board):
-    letters = "abcdefghijklmnopqrstuvwxyz"
-    
+def roll_the_dice():
     #dice configuration from english boggle
     die_1 = ["r", "i", "f", "o", "b", "x"]
     die_2 = ["i", "f", "e", "h", "e", "y"]
@@ -45,6 +43,13 @@ def fill_out_board(board):
         rolls.append(result)
     
     random.shuffle(rolls)
+
+    return rolls
+
+
+def fill_out_board(board):
+    
+    rolls = roll_the_dice()
 
     one = letter(rolls[0])
     board.append(one)
