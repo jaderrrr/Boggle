@@ -346,7 +346,7 @@
 					text = "Word cannot be made on this board or is not found in dictionary.";
 				}
 
-				else if (word in player_words) {
+				else if (isInArray(word in player_words)) {
 					text = "You have already found this word!"
 				}
 
