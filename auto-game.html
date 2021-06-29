@@ -309,7 +309,7 @@
 			<br>
 			<br>
 
-			<form id="word">
+			<form id="word" onsubmit="receiveWord(); return false;">
 				Enter word: <input type="text" name="word"> <br>
 			</form>
 
@@ -319,7 +319,6 @@
 
 			<p id="receiving_word"> </p>
 
-			<br>
 			<br>
 
 			<button onclick="showAnswers()">End the Round</button>
@@ -356,7 +355,12 @@
 					text = "Well done! You have now found " + player_words.length + "/" + wordsFound.length + " words total.";
 				}
 
+				if (player_words.length == wordsFound.length) {
+					text += " Congratulations!! You won the game!"
+				}
+
 				document.getElementById("receiving_word").innerHTML = text;
+				document.getElementById("word").reset();
 			}
 
 			function showAnswers() {
