@@ -25,6 +25,8 @@ table {
 }
 
 td {
+	width: 85;
+	height: 85;
 	font-size: 36pt;
 	font-style: bold;
 	color: #89023E;
