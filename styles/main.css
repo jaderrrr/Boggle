@@ -1,12 +1,19 @@
 body {
-	background: #FFD9DA; 
-	font-family: Arial;
+	background-color: #EBF2FA; 
+	font-family: Courier, Arial, sans-serif;
 }
 
-h1 {
-	background: #89023E;
-	color: white;
-	padding: 10px 10px;
+.boxed { 
+	background-color: #427AA1; 
+	width: 20%;
+	text-align: center;
+	margin: auto;
+	font-size: 50px;
+	font-weight: bold;
+	color: #EBF2FA;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-radius: 10px;
 }
 
 h4 {
@@ -20,19 +27,28 @@ a {
 
 table {
 	border-width: 5px;
-	border-color: #EA638C;
+	border-color: #05668D;
 	border-style: solid;
+	border-radius: 10px;
 }
 
 td {
 	font-size: 36pt;
 	font-style: bold;
-	color: #89023E;
+	color: #427AA1;
 	border-width: 5px;
-	border-color: #EA638C;
+	border-color: #05668D;
 	border-style: solid;
 }
 
 tr {
-	background: #f5f5f5;
+	background: #EBF2FA;
+}
+
+button {
+	background-color: #679436;
+	border-radius: 8px;
+	border-style: none;
+	padding: 5px 10px;
+	font-family: Courier, Arial, sans-serif;
 }

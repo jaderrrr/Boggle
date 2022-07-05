@@ -13,8 +13,11 @@
 
 		<script src="validwordlist.js"> //load the word list </script>
 
-		<h1>Boggle</h1>
+		<div class = "boxed">
+			Boggle
+		</div>
 		<!-- <h4>Refresh for a new board</h4> -->
+		<br>
 
 		<script>
 
@@ -319,6 +322,8 @@
 
 			<p id="receiving_word"> </p>
 
+			<p id = "player_words"> </p>
+
 			<br>
 
 			<button onclick="showAnswers()">End the Round</button>
@@ -361,6 +366,15 @@
 
 				document.getElementById("receiving_word").innerHTML = text;
 				document.getElementById("word").reset();
+
+				var player_list = "You have found: ";
+				for (let i = 0; i < player_words.length - 1; i++) {
+					player_list += player_words[i] + ", ";
+				}
+
+				player_list += player_words[player_words.length - 1];
+
+				document.getElementById("player_words").innerHTML = player_list;
 			}
 
 			function showAnswers() {
